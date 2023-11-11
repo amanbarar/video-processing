@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "d2d69f2d-8ed3-4841-afec-bb62340feded",
+		"name": "vidyo.ai api testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26508684"
+	},
+	"item": [
+		{
+			"name": "audio-extraction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/audio-extraction/audio-extract/"
+			},
+			"response": []
+		},
+		{
+			"name": "watermark",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "watermark",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "position_x",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "position_y",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/watermark/watermark-overlay/"
+			},
+			"response": []
+		}
+	]
+}
