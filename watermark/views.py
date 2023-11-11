@@ -24,7 +24,7 @@ class WatermarkOverlayView(APIView):
 
         output_file = f"media/watermark/processed_video/output_video_{uuid.uuid4().hex}_{os.path.splitext(video_filename)[0]}.mp4"
 
-        # Command to overlay the watermark using ffmpeg
+
         command = f'ffmpeg -i {temp_video.name} -i {temp_watermark.name} -filter_complex "overlay={position_x}:{position_y}" {output_file}'
 
         try:

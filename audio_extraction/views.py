@@ -22,7 +22,7 @@ class AudioExtractionView(APIView):
         output_file_destination = f"/audio_extraction/output/output_audio_{uuid.uuid4().hex}_{os.path.splitext(video_filename)[0]}.mp3"
         output_file = f"media/audio_extraction/output/output_audio_{uuid.uuid4().hex}_{os.path.splitext(video_filename)[0]}.mp3"
 
-        # Command to extract audio using ffmpeg
+        # Extracting audio using ffmpeg
         command = f'ffmpeg -i {temp_video.name} -vn -acodec libmp3lame {output_file}'
 
         try:
@@ -33,10 +33,12 @@ class AudioExtractionView(APIView):
                 destination_folder = '/audio_extraction/input/'
                 os.makedirs(destination_folder, exist_ok=True)
                 shutil.copy(temp_video.name, destination_folder)
+
                 audioextraction = AudioExtraction()
                 audioextraction.video.name = destination_folder + temp_video.name.split('/')[-1]
                 audioextraction.audio.name = output_file_destination
                 audioextraction.save()
+                
                 return Response({'audio_url': audio_url}, status=200)
             else:
                 return Response({'message': 'Audio extraction failed. No output file created.'}, status=400)
