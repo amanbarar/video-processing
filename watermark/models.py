@@ -1,7 +1,7 @@
 from django.db import models
 
 class Watermark(models.Model):
-    image = models.ImageField(upload_to='watermarks/images/')
+    image = models.ImageField(upload_to='watermark/images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 class WatermarkedVideos(models.Model):
