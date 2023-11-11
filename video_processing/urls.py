@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path("audio-extraction/", include("audio_extraction.urls")),
     path("audio-extraction/", include('audio_extraction.urls')),
+    path("watermark/", include('watermark.urls')),
 ]
 
 if settings.DEBUG:
