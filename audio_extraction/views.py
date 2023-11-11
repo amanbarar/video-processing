@@ -21,6 +21,7 @@ class AudioExtractionView(APIView):
                 temp_video.write(chunk)
 
         # Set the output file path for the audio
+        output_file_destination = f"/audio_extraction/output/output_audio_{uuid.uuid4().hex}_{os.path.splitext(video_filename)[0]}.mp3"
         output_file = f"media/audio_extraction/output/output_audio_{uuid.uuid4().hex}_{os.path.splitext(video_filename)[0]}.mp3"
 
         # Command to extract audio using ffmpeg
@@ -36,6 +37,7 @@ class AudioExtractionView(APIView):
                 shutil.copy(temp_video.name, destination_folder)
                 audioextraction = AudioExtraction()
                 audioextraction.video.name = destination_folder + temp_video.name.split('/')[-1]
+                audioextraction.audio.name = output_file_destination
                 audioextraction.save()
                 return Response({'audio_url': audio_url}, status=200)
             else:
