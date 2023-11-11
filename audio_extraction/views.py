@@ -1,7 +1,6 @@
 import os, uuid, shutil, subprocess
 from tempfile import NamedTemporaryFile
 
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -9,7 +8,6 @@ from .models import AudioExtraction
 
 
 class AudioExtractionView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
         video_file = request.data['video']

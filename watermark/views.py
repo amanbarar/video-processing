@@ -1,20 +1,18 @@
 import os, uuid, subprocess, shutil
 from tempfile import NamedTemporaryFile
 
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Watermark, WatermarkedVideos
 
+
 class WatermarkOverlayView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
         video_file = request.data['video']
         video_filename = video_file.name
         watermark_file = request.data['watermark']
-        watermark_id = request.data.get('watermark_id')
         position_x = request.data.get('position_x', '0')
         position_y = request.data.get('position_y', '0')
 
@@ -35,14 +33,14 @@ class WatermarkOverlayView(APIView):
                 destination_folder = '/code/media/watermark/images/'
                 os.makedirs(destination_folder, exist_ok=True)
                 shutil.copy(temp_watermark.name, destination_folder)
+                
                 watermark = Watermark()
                 watermark.image.name = destination_folder + temp_watermark.name.split('/')[-1]
                 watermark.save()
 
                 watermarkedvideos = WatermarkedVideos()
                 watermarkedvideos.watermark = watermark
-                watermarkedvideos.position_x = position_x
-                watermarkedvideos.position_y = position_y
+                watermarkedvideos.position_x, watermarkedvideos.position_y = position_x, position_y
                 watermarkedvideos.save()
 
                 return Response({'message': 'Watermark added successfully.', 'processed_video_url': f'/{output_file}'}, status=200)
