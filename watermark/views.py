@@ -41,6 +41,7 @@ class WatermarkOverlayView(APIView):
                 watermarkedvideos = WatermarkedVideos()
                 watermarkedvideos.watermark = watermark
                 watermarkedvideos.position_x, watermarkedvideos.position_y = position_x, position_y
+                watermarkedvideos.processed_video = output_file
                 watermarkedvideos.save()
 
                 return Response({'message': 'Watermark added successfully.', 'processed_video_url': f'/{output_file}'}, status=200)
