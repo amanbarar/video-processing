@@ -77,7 +77,7 @@ docker-compose exec web python manage.py createsuperuser
 
 - Separate app `watermarking` has been created for this purpose.
 
-- It consists of two tables, `Watermarks` which consists of id, image and upload time, and another table is `Watermarked videoss` which has fields like id, watermark image, position of the watermark, and extraction timestamp.
+- It consists of two tables, `Watermarks` which consists of id, image and upload time, and another table is `Watermarked videoss` which has fields like id, watermark image, position of the watermark, watermarked video, and extraction timestamp.
 
 - The api is routed to `http://127.0.0.1:8000/watermark/watermark-overlay/` and requires 4 key parameters, `video`, `watermark`, `position_x`, and `position_y` which are by default set as 0.
 **NOTE** - If you are not setting values to `position_x` and `position_y`, uncheck the key-values of these two.
