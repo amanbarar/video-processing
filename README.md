@@ -59,7 +59,7 @@ It requires username and password which can be created by this simple command:
 docker-compose exec web python manage.py createsuperuser
 ```
 
-**Postman** is **required** for testing the APIs. You can import the requests via `viyoai_api_testin.postman_collection` which is a json file and can be imported directly into the Postman.
+**Postman** is **required** for testing the APIs. You can import the requests via `viyoai_api_testing.postman_collection` which is a json file and can be imported directly into the Postman.
 
 ## APIs
 
