@@ -16,7 +16,7 @@ The following are required to be installed in the system.
 
 Clone this repository on your system using CLI
 
-```sh 
+```sh
 git clone https://github.com/amanbarar/video-processing.git
 ```
 
@@ -27,7 +27,7 @@ cd video-processing
 docker-compose up -d --build
 ```
 
-The backend Django server will run on PORT 8000. 
+The backend Django server will run on PORT 8000.
 
 **NOTE** : The build may fail some time due to limited connectivity so I would suggest to run the docker command again
 
